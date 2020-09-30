@@ -1,9 +1,9 @@
-package com.proyecto.transporte.includes;
+package com.example.transportapp.includes;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.proyecto.transporte.R;
+import com.example.transportapp.R;
 
 public class MyToolbar {
 

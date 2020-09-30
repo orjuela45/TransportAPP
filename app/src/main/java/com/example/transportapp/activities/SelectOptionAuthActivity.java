@@ -1,4 +1,4 @@
-package com.proyecto.transporte.activities;
+package com.example.transportapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.proyecto.transporte.R;
+import com.example.transportapp.R;
 
 public class SelectOptionAuthActivity extends AppCompatActivity {
 
