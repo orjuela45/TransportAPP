@@ -1,10 +1,10 @@
-package com.proyecto.transporte.activities;
+package com.example.transportapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.proyecto.transporte.R;
+import com.example.transportapp.R;
 
 public class RegisterUserActivity extends AppCompatActivity {
 

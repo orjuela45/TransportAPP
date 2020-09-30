@@ -1,4 +1,4 @@
-package com.proyecto.transporte.activities;
+package com.example.transportapp.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.proyecto.transporte.R;
+import com.example.transportapp.R;
 import com.proyecto.transporte.includes.MyToolbar;
 
 import dmax.dialog.SpotsDialog;
