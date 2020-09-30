@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activities.LoginActivity">
+
+    <include layout="@layout/action_bar_toolbar" ></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ColorFondo"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="222dp"
+            android:layout_height="154dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/txtBienvenido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="¡Bienvenido!"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="41dp"
+            android:text="Correo"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="328dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@color/ColorDarkX"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="12dp"
+
+                android:src="@drawable/iuser" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingresa tu email"
+                    android:inputType="textEmailAddress"
+                    android:textAllCaps="false"
+                    android:textColor="@color/ColorWhite50"
+                    android:textColorLink="@color/ColorPrimary2"
+                    android:textCursorDrawable="@color/ColorPrimary2"
+                    android:textStyle="bold|italic">
+
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="41dp"
+            android:text="Contraseña"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="328dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@color/ColorDarkX"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/ipassword" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="281dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingresa tu contraseña"
+                    android:inputType="textPassword"
+                    android:textStyle="bold|italic">
+
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtOlvidoPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="¿Has olvidado tu contraseña"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/ColorPrimary2"
+                android:text="Iniciar sesión"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="100dp"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/colorWhite"
+                android:text="Registrar"
+                android:textColor="@color/ColorPrimary2"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

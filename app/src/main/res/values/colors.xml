@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#673AB7</color>
+    <color name="colorPrimaryDark">#512DAB</color>
+    <color name="colorAccent">#E040FB</color>
+    <color name="YellowTaxi">#fb9403</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlueLight">#03A9F4</color>
+    <color name="ColorDarkX">#1E2126</color>
+    <color name="ColorPrimary2">#3969FC</color>
+    <color name="ColorWhite50">#80FFFFFF</color>
+    <color name="ColorFondo">#333333</color>
+</resources>
