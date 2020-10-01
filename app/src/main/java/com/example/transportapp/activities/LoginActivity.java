@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.example.transportapp.R;
-import com.proyecto.transporte.includes.MyToolbar;
 
 import dmax.dialog.SpotsDialog;
 
@@ -38,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        MyToolbar.show(this, "Login de usuario", true);
 
         mTextInputEmail = findViewById(R.id.textInputEmail);
         mTextInputPassword = findViewById(R.id.textInputPassword);
@@ -90,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     private void goToRegister() {
-        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        Intent intent = new Intent(LoginActivity.this, RegisterUserActivity.class);
         startActivity(intent);
     }
 }
