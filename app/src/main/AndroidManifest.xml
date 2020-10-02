@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.RegisterDriverActivity"></activity>
+        <activity android:name=".activities.UserDataActivity" />
         <activity
             android:name=".activities.LoginActivity"
             android:parentActivityName=".activities.SelectOptionAuthActivity" />
@@ -26,7 +27,7 @@
         <activity
             android:name=".activities.RegisterUserActivity"
             android:parentActivityName=".activities.LoginActivity" />
-        <activity android:name=".activities.UserDataActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
