@@ -203,7 +203,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/txtName"
             android:layout_width="294dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="57dp"

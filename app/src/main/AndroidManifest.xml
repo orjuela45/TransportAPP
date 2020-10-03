@@ -13,10 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.SelectOptionAuthActivity"
-            android:parentActivityName=".activities.MainActivity"/>
-        <activity android:name=".activities.RegisterUserActivity"
-            android:parentActivityName=".activities.LoginActivity"/>
+        <activity android:name=".activities.DataUpdate"></activity>
+        <activity
+            android:name=".activities.SelectOptionAuthActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.RegisterUserActivity"
+            android:parentActivityName=".activities.LoginActivity" />
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
