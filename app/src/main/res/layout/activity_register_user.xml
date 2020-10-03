@@ -13,21 +13,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="0"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:background="@drawable/my_border"
+            android:backgroundTint="@color/ColorFondo"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/exit"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/iback"
+                android:backgroundTint="@color/ColorPrimary2" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="226dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             app:srcCompat="@drawable/logo" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
     </LinearLayout>
 
     <Space
