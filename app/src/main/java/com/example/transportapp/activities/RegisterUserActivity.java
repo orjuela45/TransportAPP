@@ -43,8 +43,8 @@ public class RegisterUserActivity extends AppCompatActivity {
         //Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         //Campos
-        btnRegister = findViewById(R.id.btnRegister);
-        txtEmail = findViewById(R.id.txtName);
+        btnRegister = findViewById(R.id.register);
+        txtEmail = findViewById(R.id.email);
         txtPassword = findViewById(R.id.password);
         //Accion Registro
         btnRegister.setOnClickListener(new View.OnClickListener() {
