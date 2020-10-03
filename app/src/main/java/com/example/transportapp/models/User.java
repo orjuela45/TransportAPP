@@ -12,7 +12,6 @@ public class User {
     Date created_at;
     Date update_at;
     Integer status_id;
-    Integer current_role;
 
     public User() {
     }
@@ -59,13 +58,5 @@ public class User {
 
     public void setStatusID(Integer status_id) {
         this.status_id = status_id;
-    }
-
-    public Integer getCurrentRole() {
-        return current_role;
-    }
-
-    public void setCurrentRole(Integer current_role) {
-        this.current_role = current_role;
     }
 }

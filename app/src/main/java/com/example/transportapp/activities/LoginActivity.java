@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.example.transportapp.R;
-import com.proyecto.transporte.includes.MyToolbar;
+import com.example.transportapp.includes.MyToolbar;
 
 import dmax.dialog.SpotsDialog;
 
@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     private void goToRegister() {
-        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        Intent intent = new Intent(LoginActivity.this, RegisterUserActivity.class);
         startActivity(intent);
     }
 }

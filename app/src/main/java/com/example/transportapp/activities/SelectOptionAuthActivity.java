@@ -49,7 +49,7 @@ public class SelectOptionAuthActivity extends AppCompatActivity {
     }
 
     private void goToRegister() {
-        Intent intent = new Intent(SelectOptionAuthActivity.this, RegisterActivity.class);
+        Intent intent = new Intent(SelectOptionAuthActivity.this, RegisterUserActivity.class);
         startActivity(intent);
     }
 }
