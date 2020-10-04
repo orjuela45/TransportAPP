@@ -2,6 +2,7 @@ package com.example.transportapp.providers;
 
 
 import com.example.transportapp.models.User;
+import com.example.transportapp.models.UserInformation;
 import com.example.transportapp.models.UserRoles;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -42,6 +43,15 @@ public class UserProvider {
             userRol.setCreatedAt();
             userRol.setCurrent(true);
             databaseReference.child(user.getId()).child("Roles").child(userRol.getRol()).setValue(userRol);
+            return true;
+        } catch (Exception error) {
+            return false;
+        }
+    }
+
+   public boolean registerInformationUser(UserInformation userInf , String userId) {
+        try {
+            databaseReference.child(userId).child("InformacionUsuario").setValue(userInf);
             return true;
         } catch (Exception error) {
             return false;

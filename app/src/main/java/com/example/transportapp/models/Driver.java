@@ -1,4 +1,4 @@
-package com.proyecto.transporte.models;
+package com.example.transportapp.models;
 
 public class Driver {
 

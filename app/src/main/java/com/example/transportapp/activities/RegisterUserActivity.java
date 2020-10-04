@@ -79,7 +79,7 @@ public class RegisterUserActivity extends AppCompatActivity {
             Toast.makeText(this, "La contraseña debe ser mayor a 6 caracteres", Toast.LENGTH_SHORT).show();
             return false;
         }
-        mDialog = new SpotsDialog.Builder().setContext(RegisterUserActivity.this).setMessage("Registrando").build();
+        mDialog = new SpotsDialog.Builder().setContext(RegisterUserActivity.this).setMessage("Registrando...").build();
         mDialog.show();
         Query q = databaseReference.orderByChild("Roles").equalTo("Viajero");
         q.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -97,7 +97,6 @@ public class RegisterUserActivity extends AppCompatActivity {
                         Log.d(TAG, "Usuario registrado exitosamente:success");
                         Intent dataUpdateIn = new Intent(RegisterUserActivity.this, DataUpdate.class);
                         dataUpdateIn.putExtra("userObj", userOk);
-                        dataUpdateIn.putExtra("email", email);
                         startActivity(dataUpdateIn);
                         Toast.makeText(RegisterUserActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
                     } else {
