@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@android:drawable/ic_dialog_map"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_travels"
+            android:icon="@android:drawable/ic_menu_recent_history"
+            android:title="@string/menu_travels" />
+        <item
+            android:id="@+id/nav_message"
+            android:icon="@drawable/icon_email"
+            android:title="@string/menu_message" />
+        <item
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="@string/menu_address" />
+        <item
+            android:icon="?android:attr/actionModeFindDrawable"
+            android:title="@string/menu_paymentmethod" />
+        <item
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="@string/menu_signoff" />
+    </group>
+</menu>

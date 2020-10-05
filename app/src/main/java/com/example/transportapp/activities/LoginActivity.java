@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -75,6 +74,8 @@ public class LoginActivity extends AppCompatActivity {
                                 if (realPassword.equals(password)){
                                     mDialog.dismiss();
                                     Toast.makeText(LoginActivity.this, "El usuario puede ingresar", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                                    startActivity(intent);
                                 }else{
                                     mDialog.dismiss();
                                     Toast.makeText(LoginActivity.this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();

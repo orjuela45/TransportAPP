@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Transporte</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Mapa</string>
+    <string name="menu_travels">Historia de viajes</string>
+    <string name="menu_message">Mensaje</string>
+    <string name="menu_address">Direcciones</string>
+    <string name="menu_paymentmethod">Métodos de pago</string>
+    <string name="menu_signoff">Cerrar sesión</string>
+    <string name="menu_Changerole">Cambio de rol</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
