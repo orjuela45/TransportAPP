@@ -17,6 +17,10 @@ import android.widget.Toast;
 import com.example.transportapp.R;
 import com.example.transportapp.models.User;
 import com.example.transportapp.providers.UserProvider;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +39,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     EditText txtEmail, txtPassword;
     AlertDialog mDialog;
     private DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_user);
         //Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        mAuth = FirebaseAuth.getInstance();
         //Campos
         btnRegister = findViewById(R.id.register);
         txtEmail = findViewById(R.id.email);
@@ -89,20 +95,27 @@ public class RegisterUserActivity extends AppCompatActivity {
                 if (snapshot.exists()) {
                     Toast.makeText(RegisterUserActivity.this, "El correo ingresado ya se encuentra registrado.", Toast.LENGTH_SHORT).show();
                 } else {
-                    UserProvider prov = new UserProvider();
-                    User userOk = prov.createUser(email, password);
-                    if (userOk != null) {
-                        String userId = userOk.getId();
-                        String email = userOk.getEmail();
-                        Log.d(TAG, "Usuario registrado exitosamente:success");
-                        Intent dataUpdateIn = new Intent(RegisterUserActivity.this, DataUpdate.class);
-                        dataUpdateIn.putExtra("userObj", userOk);
-                        startActivity(dataUpdateIn);
-                        Toast.makeText(RegisterUserActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Log.e(TAG, "Error al registrar:danger");
-                        Toast.makeText(RegisterUserActivity.this, "Ocurrio un error al crear el usuario", Toast.LENGTH_SHORT).show();
-                    }
+                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            String id = mAuth.getCurrentUser().getUid();
+                            UserProvider prov = new UserProvider();
+                            User userOk = prov.createUser(email, password, id);
+                            if (userOk != null) {
+                                String userId = userOk.getId();
+                                String email = userOk.getEmail();
+                                Log.d(TAG, "Usuario registrado exitosamente:success");
+                                Intent dataUpdateIn = new Intent(RegisterUserActivity.this, DataUpdate.class);
+                                dataUpdateIn.putExtra("userObj", userOk);
+                                startActivity(dataUpdateIn);
+                                Toast.makeText(RegisterUserActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Log.e(TAG, "Error al registrar:danger");
+                                Toast.makeText(RegisterUserActivity.this, "Ocurrio un error al crear el usuario", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
             @Override

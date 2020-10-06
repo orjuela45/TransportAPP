@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     Button mButtonLogin;
     Button mButtonGoToRegister;
     DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
 
     AlertDialog mDialog;
 
@@ -36,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         //Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        mAuth = FirebaseAuth.getInstance();
 
         mTextInputEmail = findViewById(R.id.textInputEmail);
         mTextInputPassword = findViewById(R.id.textInputPassword);
@@ -64,32 +70,17 @@ public class LoginActivity extends AppCompatActivity {
         if(!email.isEmpty() && !password.isEmpty()) {
             if(password.length() >= 6) {
                 mDialog.show();
-                Query q = databaseReference.orderByChild("email").equalTo(email);
-                q.addListenerForSingleValueEvent(new ValueEventListener() {
+                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()){
-                            for (DataSnapshot data:snapshot.getChildren()){
-                                String realPassword = data.child("password").getValue().toString();
-                                if (realPassword.equals(password)){
-                                    mDialog.dismiss();
-                                    Toast.makeText(LoginActivity.this, "El usuario puede ingresar", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                                    startActivity(intent);
-                                }else{
-                                    mDialog.dismiss();
-                                    Toast.makeText(LoginActivity.this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
-                                }
-                            }
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        mDialog.dismiss();
+                        if (task.isSuccessful()){
+                            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                            startActivity(intent);
+                            finish();
                         } else {
-                            mDialog.dismiss();
-                            Toast.makeText(LoginActivity.this, "El correo electronico no se encuentra registrado", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "El correo electronico o la contraseña son incorrectos", Toast.LENGTH_SHORT).show();
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
             } else {
@@ -102,5 +93,15 @@ public class LoginActivity extends AppCompatActivity {
     private void goToRegister() {
         Intent intent = new Intent(LoginActivity.this, RegisterUserActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mAuth.getCurrentUser() != null){
+            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

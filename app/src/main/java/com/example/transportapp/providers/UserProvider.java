@@ -18,10 +18,10 @@ public class UserProvider {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
     }
 
-    public User createUser(String email, String password) {
+    public User createUser(String email, String password, String id) {
         try {
             User userRegister = new User();
-            userRegister.setId(UUID.randomUUID().toString());
+            userRegister.setId(id);
             userRegister.setEmail(email);
             userRegister.setPassword(password);
             userRegister.setStatusID(1);
