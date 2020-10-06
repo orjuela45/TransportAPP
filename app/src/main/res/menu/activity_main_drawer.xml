@@ -23,6 +23,7 @@
             android:icon="?android:attr/actionModeFindDrawable"
             android:title="@string/menu_paymentmethod" />
         <item
+            android:id="@+id/btnSignOut"
             android:icon="@android:drawable/ic_lock_power_off"
             android:title="@string/menu_signoff" />
     </group>
