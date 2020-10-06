@@ -48,7 +48,10 @@ public class DataUpdate extends AppCompatActivity {
                     User userGet = (User) dataUpdateIn.getSerializableExtra("userObj");
                     boolean updateOK = UpdateInformation(userGet);
                     if(updateOK){
-                            // Aqui se envia al menu principal
+                        Intent menuActIn = new Intent(DataUpdate.this, MenuActivity.class);
+                        mDialog.dismiss();
+                        startActivity(menuActIn);
+                        finish();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

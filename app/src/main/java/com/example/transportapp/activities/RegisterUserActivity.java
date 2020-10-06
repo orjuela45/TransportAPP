@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 import dmax.dialog.SpotsDialog;
@@ -98,7 +99,8 @@ public class RegisterUserActivity extends AppCompatActivity {
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            String id = mAuth.getCurrentUser().getUid();
+                            String id =  UUID.randomUUID().toString();
+                          /*String id = mAuth.getCurrentUser().getUid(); *///puede llegar null
                             UserProvider prov = new UserProvider();
                             User userOk = prov.createUser(email, password, id);
                             if (userOk != null) {
