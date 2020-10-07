@@ -88,7 +88,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         }
         mDialog = new SpotsDialog.Builder().setContext(RegisterUserActivity.this).setMessage("Registrando...").build();
         mDialog.show();
-        Query q = databaseReference.orderByChild("Roles").equalTo("Viajero");
+        Query q = databaseReference.orderByChild("email").equalTo(email);
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -99,19 +99,23 @@ public class RegisterUserActivity extends AppCompatActivity {
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            String id =  UUID.randomUUID().toString();
-                          /*String id = mAuth.getCurrentUser().getUid(); *///puede llegar null
-                            UserProvider prov = new UserProvider();
-                            User userOk = prov.createUser(email, password, id);
-                            if (userOk != null) {
-                                String userId = userOk.getId();
-                                String email = userOk.getEmail();
-                                Log.d(TAG, "Usuario registrado exitosamente:success");
-                                Intent dataUpdateIn = new Intent(RegisterUserActivity.this, DataUpdate.class);
-                                dataUpdateIn.putExtra("userObj", userOk);
-                                startActivity(dataUpdateIn);
-                                Toast.makeText(RegisterUserActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
-                                finish();
+                            if (task.isSuccessful()) {
+                                String id = mAuth.getCurrentUser().getUid();
+                                UserProvider prov = new UserProvider();
+                                User userOk = prov.createUser(email, password, id);
+                                if (userOk != null) {
+                                    String userId = userOk.getId();
+                                    String email = userOk.getEmail();
+                                    Log.d(TAG, "Usuario registrado exitosamente:success");
+                                    Intent dataUpdateIn = new Intent(RegisterUserActivity.this, DataUpdate.class);
+                                    dataUpdateIn.putExtra("userObj", userOk);
+                                    startActivity(dataUpdateIn);
+                                    Toast.makeText(RegisterUserActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                } else {
+                                    Log.e(TAG, "Error al registrar:danger");
+                                    Toast.makeText(RegisterUserActivity.this, "Ocurrio un error al crear el usuario", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
                                 Log.e(TAG, "Error al registrar:danger");
                                 Toast.makeText(RegisterUserActivity.this, "Ocurrio un error al crear el usuario", Toast.LENGTH_SHORT).show();
@@ -120,6 +124,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                     });
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
