@@ -39,9 +39,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.DataUpdate" />
         <activity
-            android:name=".activities.SelectOptionAuthActivity"
-            android:parentActivityName=".activities.MainActivity" />
-        <activity
             android:name=".activities.RegisterUserActivity"
             android:parentActivityName=".activities.LoginActivity" />
         <activity android:name=".activities.LoginActivity">

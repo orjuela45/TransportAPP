@@ -1,58 +1,57 @@
 package com.example.transportapp.models;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class UserInformation {
 
-    String nombre;
-    String apellidos;
-    String identificacion;
-    String ceular;
-    String fechaNacimiento;
+    String name;
+    String lastName;
+    String identification;
+    String phone;
+    String birthdate;
 
-    public UserInformation(String nombre, String apellidos, String identifiacion, String celular, String fechaNacimiento) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.identificacion = identifiacion;
-        this.ceular = celular;
-        this.fechaNacimiento = fechaNacimiento;
+    public UserInformation(String name, String lastName, String identification, String phone, String birthdate) {
+        this.name = name;
+        this.lastName = lastName;
+        this.identification = identification;
+        this.phone = phone;
+        this.birthdate = birthdate;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getIdentificacion() {
-        return identificacion;
+    public String getIdentification() {
+        return identification;
     }
 
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
+    public void setIdentification(String identification) {
+        this.identification = identification;
     }
 
-    public String getCeular() {
-        return ceular;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setCeular(String ceular) {
-        this.ceular = ceular;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
-    }
+    public String getBirthDate() {return birthdate;}
 
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
+    public void setBirthDate(String birthDate) {this.birthdate = birthdate;}
 }

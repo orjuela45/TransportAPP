@@ -27,7 +27,7 @@ public class UserProvider {
             userRegister.setStatusID(1);
             userRegister.setCreatedAt();
             databaseReference.child(userRegister.getId()).setValue(userRegister);
-            if (registerUSerRolViajero(userRegister)){
+            if (registerUSerRolTraveler(userRegister)){
                 return userRegister;
             }
             return null;
@@ -36,22 +36,22 @@ public class UserProvider {
         }
     }
 
-    boolean registerUSerRolViajero(User user) {
+    boolean registerUSerRolTraveler(User user) {
         try {
             UserRoles userRol = new UserRoles();
-            userRol.setRol("Viajero");
+            userRol.setRol("Traveler");
             userRol.setCreatedAt();
             userRol.setCurrent(true);
-            databaseReference.child(user.getId()).child("Roles").child(userRol.getRol()).setValue(userRol);
+            databaseReference.child(user.getId()).child("Rols").child(userRol.getRol()).setValue(userRol);
             return true;
         } catch (Exception error) {
             return false;
         }
     }
 
-   public boolean registerInformationUser(UserInformation userInf , String userId) {
+   public boolean registerUserInformation(UserInformation userInf , String userId) {
         try {
-            databaseReference.child(userId).child("InformacionUsuario").setValue(userInf);
+            databaseReference.child(userId).child("UserInformation").setValue(userInf);
             return true;
         } catch (Exception error) {
             return false;
