@@ -15,6 +15,9 @@ import com.example.transportapp.models.User;
 import com.example.transportapp.models.UserInformation;
 import com.example.transportapp.providers.UserProvider;
 
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+
 import dmax.dialog.SpotsDialog;
 
 public class DataUpdate extends AppCompatActivity {
@@ -92,7 +95,7 @@ public class DataUpdate extends AppCompatActivity {
                 txtTelefono.getText().toString(),
                 txtFechaNacimiento.getText().toString()
                 );
-        boolean result = prov.registerInformationUser(userInformation, userGet.getId());
+        boolean result = prov.registerUserInformation(userInformation, userGet.getId());
         if(!result){
             Toast.makeText(this, "Ocurrio un error al intentar actualizar la informacion del usuario!", Toast.LENGTH_SHORT).show();
             return false;

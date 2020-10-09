@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 editor.putString("user", "client");
                 editor.apply();
-                goToSelectAuth();
             }
         });
 
@@ -42,14 +41,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 editor.putString("user", "driver");
                 editor.apply();
-                goToSelectAuth();
             }
         });
 
     }
 
-    private void goToSelectAuth() {
-        Intent intent = new Intent(MainActivity.this, SelectOptionAuthActivity.class);
-        startActivity(intent);
-    }
 }
