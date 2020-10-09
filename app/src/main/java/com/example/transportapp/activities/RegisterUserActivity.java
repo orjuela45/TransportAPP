@@ -118,13 +118,12 @@ public class RegisterUserActivity extends AppCompatActivity {
                                 }
                             } else {
                                 Log.e(TAG, "Error al registrar:danger");
-                                Toast.makeText(RegisterUserActivity.this, "Ocurrio un error al crear el usuario", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterUserActivity.this, "Ocurrio un error al crear el usuario en DB", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
