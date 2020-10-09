@@ -1,0 +1,14 @@
+<resources>
+    <string name="title_activity_menu_admin">MenuAdminActivity</string>
+    <string name="navigation_drawer_open_admin">Open navigation drawer</string>
+    <string name="navigation_drawer_close_admin">Close navigation drawer</string>
+    <string name="nav_header_title_admin">Android Studio</string>
+    <string name="nav_header_subtitle_admin">android.studio@android.com</string>
+    <string name="nav_header_desc_admin">Navigation header</string>
+    <string name="action_settings_admin">Settings</string>
+
+    <string name="menu_home_admin">Solicitudes</string>
+    <string name="menu_register_driver_admin">Registrar conductor</string>
+    <string name="menu_saleadmin">Promociones</string>
+    <string name="menu_signoff_admin">Cerrar sesión</string>
+</resources>

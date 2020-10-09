@@ -2,8 +2,9 @@ package com.example.transportapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import com.example.transportapp.R;
@@ -19,15 +20,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MenuDriverActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth mAuth;
+    Button SignOutDriver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_user);
+        setContentView(R.layout.activity_menu_driver);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mAuth = FirebaseAuth.getInstance();
@@ -37,7 +39,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         // Passing each menu_user ID as a set of Ids because each
         // menu_user should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_travels, R.id.nav_message)
+                R.id.nav_home, R.id.nav_travels_driver, R.id.nav_message_driver)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -49,7 +51,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu_user; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_user, menu);
+        getMenuInflater().inflate(R.menu.menu_driver, menu);
         return true;
     }
 
@@ -62,9 +64,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.btnSignOut){
+        if (item.getItemId() == R.id.btnSignOutDriver){
             mAuth.signOut();
-            startActivity(new Intent(MenuActivity.this, LoginActivity.class));
+            startActivity(new Intent(MenuDriverActivity.this, LoginActivity.class));
         }
         return false;
     }

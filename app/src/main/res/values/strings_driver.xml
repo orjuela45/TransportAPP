@@ -1,0 +1,14 @@
+<resources>
+    <string name="title_activity_menu_driver">MenuDriverActivity</string>
+    <string name="navigation_drawer_open_driver">Open navigation drawer</string>
+    <string name="navigation_drawer_close_driver">Close navigation drawer</string>
+    <string name="nav_header_title_driver">Android Studio</string>
+    <string name="nav_header_subtitle_driver">android.studio@android.com</string>
+    <string name="nav_header_desc_driver">Navigation header</string>
+    <string name="action_settings_driver">Settings</string>
+
+    <string name="menu_home_driver">Mapa</string>
+    <string name="menu_travels_driver">Historial de viajes</string>
+    <string name="menu_message_driver">Mensaje</string>
+    <string name="menu_signoff_driver">Cerrar sesión</string>
+</resources>

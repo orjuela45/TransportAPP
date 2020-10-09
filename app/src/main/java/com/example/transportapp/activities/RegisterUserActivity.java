@@ -36,7 +36,7 @@ import dmax.dialog.SpotsDialog;
 public class RegisterUserActivity extends AppCompatActivity {
 
     private static final String TAG = "";
-    Button btnRegister;
+    Button btnRegister, btnBack;
     EditText txtEmail, txtPassword;
     AlertDialog mDialog;
     private DatabaseReference databaseReference;
@@ -64,6 +64,15 @@ public class RegisterUserActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnBack = findViewById(R.id.back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
     }
 
     Boolean registerUser() throws InterruptedException {
