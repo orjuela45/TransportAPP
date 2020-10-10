@@ -23,36 +23,6 @@
         app:menu="@menu/activity_main_drawer_user"
         android:background="@color/ColorFondo"
         app:itemIconTint="@color/drawer_item_color_state"
-        app:itemTextColor="@color/drawer_item_color_state">
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="500dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/colorWhite"
-            android:text="Más opciones con tu cuenta:" />
-
-        <Button
-            android:id="@+id/rol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="62dp"
-            android:layout_marginTop="530dp"
-            android:background="@drawable/rounded_button"
-            android:text="Cambio de rol"
-            android:textAllCaps="false"
-            android:textColor="@color/colorWhite" />
-
-        <TextView
-            android:id="@+id/textVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="650dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/ColorWhite50"
-            android:text="v1.100.00001" />
-    </com.google.android.material.navigation.NavigationView>
+        app:itemTextColor="@color/drawer_item_color_state"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

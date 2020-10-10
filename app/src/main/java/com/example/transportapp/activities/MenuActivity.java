@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 
 import com.example.transportapp.R;
@@ -23,6 +24,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth mAuth;
+    private Button perfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,15 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
+        View headView = navigationView.getHeaderView(0);
+        perfil = headView.findViewById(R.id.dataupdate);
+        perfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, DataUpdate.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -65,6 +76,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         if (item.getItemId() == R.id.btnSignOut){
             mAuth.signOut();
             startActivity(new Intent(MenuActivity.this, LoginActivity.class));
+        }
+        if (item.getItemId() == R.id.btnRegisterDriver){
+            startActivity(new Intent(MenuActivity.this, RegisterDriverActivity.class));
         }
         return false;
     }

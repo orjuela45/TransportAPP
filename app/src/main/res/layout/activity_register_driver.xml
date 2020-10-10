@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ColorFondo"
+    android:baselineAligned="false"
     android:orientation="vertical"
     tools:context=".activities.RegisterDriverActivity">
 
@@ -16,16 +17,16 @@
         <LinearLayout
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_weight="0"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
-            android:gravity="center"
+            android:layout_weight="0"
             android:background="@drawable/my_border"
             android:backgroundTint="#423C3C"
+            android:gravity="center"
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/exit"
+                android:id="@+id/exitRegisterDriver"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@drawable/ix"
@@ -81,82 +82,418 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="22dp" />
+        android:layout_height="42dp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/one"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:background="@drawable/circle_button"
-            android:backgroundTint="@color/ColorPrimary2"
-            android:text="1"
-            android:textColor="@color/ColorDarkX"
-            android:textStyle="bold" />
-
-        <Space
-            android:layout_width="40sp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="89dp"
+                android:orientation="vertical">
 
-        <Button
-            android:id="@+id/two"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:background="@drawable/circle_button"
-            android:backgroundTint="@color/colorWhite"
-            android:text="2"
-            android:textColor="@color/ColorDarkX"
-            android:textStyle="bold" />
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="282dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="22dp" />
+                    <Space
+                        android:layout_width="297dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-    <LinearLayout
-        android:layout_width="407dp"
-        android:layout_height="368dp"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/muli_extralight"
+                        android:text="Cuenta bancaria"
+                        android:textColor="@color/drawer_item_color_state"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="22dp" />
+                    <Space
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/countBank"
+                        android:layout_width="176dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:fontFamily="@font/muli_extralight"
+                        android:hint="xxxx-xxxxxxxx"
+                        android:inputType="number"
+                        android:singleLine="false"
+                        android:textColor="#80FFFFFF"
+                        android:textColorHint="#80FFFFFF" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:layout_weight="1" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-        <Button
-            android:id="@+id/request"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:background="@drawable/my_border"
-            android:backgroundTint="@color/ColorPrimary2"
-            android:text="Enviar Solicitud"
-            android:textColor="@color/colorWhite"/>
+                    <Spinner
+                        android:id="@+id/spinnerBanks"
+                        android:layout_width="177dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="4dp"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:fontFamily="@font/muli_extralight"
+                        android:textColor="#80FFFFFF"
+                        android:textColorHint="#80FFFFFF" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </LinearLayout>
+                    ;
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnLicencia"
+                    android:layout_width="146dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/my_border"
+                    android:backgroundTint="@color/ColorPrimary2"
+                    android:fontFamily="@font/muli_extralight"
+                    android:text="Licencia de conducción"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnTecnico"
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_border"
+                    android:backgroundTint="@color/ColorPrimary2"
+                    android:fontFamily="@font/muli_extralight"
+                    android:text="Técnico mecánica"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnSOAT"
+                    android:layout_width="146dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/my_border"
+                    android:backgroundTint="@color/ColorPrimary2"
+                    android:fontFamily="@font/muli_extralight"
+                    android:text="SOAT"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnPropiedad"
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_border"
+                    android:backgroundTint="@color/ColorPrimary2"
+                    android:fontFamily="@font/muli_extralight"
+                    android:text="Targeta de propiedad"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="89dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/muli_extralight"
+                        android:text="Placa"
+                        android:textColor="@color/drawer_item_color_state"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="117dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/muli_extralight"
+                        android:text="Modelo"
+                        android:textColor="@color/drawer_item_color_state"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="98dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/muli_extralight"
+                        android:text="Color"
+                        android:textColor="@color/drawer_item_color_state"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="17dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <EditText
+                        android:id="@+id/placa"
+                        android:layout_width="84dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:fontFamily="@font/muli_extralight"
+                        android:hint="xxx-xxx"
+                        android:inputType="number|text"
+                        android:singleLine="false"
+                        android:textColor="#80FFFFFF"
+                        android:textColorHint="#80FFFFFF" />
+
+                    <Spinner
+                        android:id="@+id/spinnerModels"
+                        android:layout_width="122dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:fontFamily="@font/muli_extralight"
+                        android:textColor="#80FFFFFF"
+                        android:textColorHint="#80FFFFFF" />
+
+                    <EditText
+                        android:id="@+id/colorCar"
+                        android:layout_width="109dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:fontFamily="@font/muli_extralight"
+                        android:hint="Color"
+                        android:inputType="text"
+                        android:singleLine="false"
+                        android:textColor="#80FFFFFF"
+                        android:textColorHint="#80FFFFFF" />
+
+                    <Space
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    ;
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnFrontal"
+                    android:layout_width="146dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/my_border"
+                    android:backgroundTint="@color/ColorPrimary2"
+                    android:fontFamily="@font/muli_extralight"
+                    android:text="Frontal"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnTrasera"
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_border"
+                    android:backgroundTint="@color/ColorPrimary2"
+                    android:fontFamily="@font/muli_extralight"
+                    android:text="Trasera"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnDerecha"
+                    android:layout_width="146dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/my_border"
+                    android:backgroundTint="@color/ColorPrimary2"
+                    android:fontFamily="@font/muli_extralight"
+                    android:text="Derecha"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnIzquierda"
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_border"
+                    android:backgroundTint="@color/ColorPrimary2"
+                    android:fontFamily="@font/muli_extralight"
+                    android:text="Izquierda"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnEnviarSolicitud"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_border"
+                    android:backgroundTint="@color/ColorPrimary2"
+                    android:text="Enviar Solicitud"
+                    android:textColor="@color/colorWhite" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
