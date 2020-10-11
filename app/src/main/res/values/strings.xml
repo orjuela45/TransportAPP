@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_requiere">Location permission require</string>
+    <string name="drivers_not_found">Drivers not found</string>
+    <string name="not_found_key">Not found driver with key</string>
+</resources>

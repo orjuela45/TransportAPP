@@ -10,5 +10,5 @@
     <string name="menu_home_driver">Mapa</string>
     <string name="menu_travels_driver">Historial de viajes</string>
     <string name="menu_message_driver">Mensaje</string>
-    <string name="menu_signoff_driver">Cerrar sesión</string>
+    <string name="menu_sign_off_driver">Cerrar sesión</string>
 </resources>

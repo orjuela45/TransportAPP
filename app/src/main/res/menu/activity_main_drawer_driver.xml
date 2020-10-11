@@ -17,8 +17,8 @@
             android:icon="@drawable/icon_email"
             android:title="@string/menu_message_driver" />
         <item
-            android:id="@+id/btnSignOutDriver"
+            android:id="@+id/nav_sign_out_driver"
             android:icon="@android:drawable/ic_lock_power_off"
-            android:title="@string/menu_signoff_driver" />
+            android:title="@string/menu_sign_off_driver" />
     </group>
 </menu>
