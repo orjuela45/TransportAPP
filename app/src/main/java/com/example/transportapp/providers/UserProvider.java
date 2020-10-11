@@ -1,6 +1,7 @@
 package com.example.transportapp.providers;
 
 
+import com.example.transportapp.models.DriverInformation;
 import com.example.transportapp.models.User;
 import com.example.transportapp.models.UserInformation;
 import com.example.transportapp.models.UserRoles;
@@ -58,4 +59,35 @@ public class UserProvider {
         }
     }
 
+    boolean registerUserRolDriver(String userId) {
+        try {
+            UserRoles userRol = new UserRoles();
+            userRol.setRol("Driver");
+            userRol.setCreatedAt();
+            userRol.setCurrent(false);
+            databaseReference.child(userId).child("Rols").child(userRol.getRol()).setValue(userRol);
+            return true;
+        } catch (Exception error) {
+            return false;
+        }
+    }
+
+    public DriverInformation registerDriverInformation(DriverInformation di, String userId) {
+        try {
+            if (registerUserRolDriver(userId)) {
+                DriverInformation driverInformation = new DriverInformation();
+                driverInformation.setCarModel(di.getCarModel());
+                driverInformation.setLicensePlate(di.getLicensePlate());
+                driverInformation.setCarColour(di.getCarColour());
+                driverInformation.setCountBank(di.getCountBank());
+                driverInformation.setBank(di.getBank());
+                driverInformation.setStatus("Pendiente");
+                databaseReference.child(userId) .child("DriverInformation").setValue(driverInformation);
+                return driverInformation;
+            }
+            return null;
+        } catch (Exception error) {
+            return null;
+        }
+    }
 }

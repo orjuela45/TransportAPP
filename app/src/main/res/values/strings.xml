@@ -3,4 +3,23 @@
     <string name="permission_requiere">Location permission require</string>
     <string name="drivers_not_found">Drivers not found</string>
     <string name="not_found_key">Not found driver with key</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="banks">
+        <item>--</item>
+        <item>Bancolommbia</item>
+        <item>Daviplata</item>
+        <item>Colpatria</item>
+        <item>Davivienda</item>
+    </string-array>
+    <string-array name="models">
+        <item>--</item>
+        <item>2020</item>
+        <item>2019</item>
+        <item>2018</item>
+        <item>2017</item>
+        <item>2016</item>
+        <item>2015</item>
+        <item>2016</item>
+        <item>2014</item>
+    </string-array>
 </resources>

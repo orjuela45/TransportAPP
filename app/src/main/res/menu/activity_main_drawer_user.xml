@@ -23,6 +23,10 @@
             android:icon="?android:attr/actionModeFindDrawable"
             android:title="@string/menu_paymentmethod" />
         <item
+            android:id="@+id/btnRegisterDriver"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="Quiero ser conductor" />
+        <item
             android:id="@+id/btnSignOut"
             android:icon="@android:drawable/ic_lock_power_off"
             android:title="@string/menu_signoff" />

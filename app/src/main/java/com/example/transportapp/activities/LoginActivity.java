@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     Button mButtonGoToRegister;
     DatabaseReference databaseReference;
     FirebaseAuth mAuth;
+    String userId;
 
     AlertDialog mDialog;
 
@@ -75,9 +76,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         mDialog.dismiss();
                         if (task.isSuccessful()){
-                            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                            startActivity(intent);
-                            finish();
+                            userId = mAuth.getCurrentUser().getUid();
+                            redirectMenu();
                         } else {
                             Toast.makeText(LoginActivity.this, "El correo electronico o la contraseña son incorrectos", Toast.LENGTH_SHORT).show();
                         }
@@ -99,9 +99,37 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (mAuth.getCurrentUser() != null){
-            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-            startActivity(intent);
-            finish();
+            userId = mAuth.getCurrentUser().getUid();
+            redirectMenu();
         }
+    }
+
+    public void redirectMenu(){
+        mDialog = new SpotsDialog.Builder().setContext(LoginActivity.this).setMessage("Iniciando...").build();
+        mDialog.show();
+        Query q = databaseReference.child(userId).child("Rols");
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                        if (dataSnapshot.child("current").getValue().toString() == "true"){
+                            switch (dataSnapshot.child("rol").getValue().toString()){
+                                case "Traveler":
+                                    startActivity(new Intent(LoginActivity.this, MenuActivity.class));
+                                    break;
+                                case "Manager":
+                                    startActivity(new Intent(LoginActivity.this, MenuAdminActivity.class));
+                                    break;
+                            }
+                            mDialog.hide();
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 }

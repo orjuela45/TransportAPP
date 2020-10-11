@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navHeaderUser"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
     android:background="@color/ColorFondo"
@@ -22,9 +23,9 @@
             android:id="@+id/dataupdate"
             android:layout_width="90dp"
             android:layout_height="81dp"
+            android:background="@drawable/userimage"
             android:contentDescription="@string/nav_header_desc"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:background="@drawable/userimage" />
+            android:paddingTop="@dimen/nav_header_vertical_spacing" />
 
         <LinearLayout
             android:layout_width="match_parent"
