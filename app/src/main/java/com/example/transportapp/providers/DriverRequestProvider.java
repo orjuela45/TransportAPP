@@ -1,6 +1,7 @@
 package com.example.transportapp.providers;
 
 
+import com.example.transportapp.models.DriverInformation;
 import com.example.transportapp.models.DriverRequest;
 import com.example.transportapp.models.User;
 import com.example.transportapp.models.UserInformation;
@@ -31,27 +32,4 @@ public class DriverRequestProvider {
             return null;
         }
     }
-
-    boolean registerUSerRolTraveler(User user) {
-        try {
-            UserRoles userRol = new UserRoles();
-            userRol.setRol("Traveler");
-            userRol.setCreatedAt();
-            userRol.setCurrent(true);
-            databaseReference.child(user.getId()).child("Rols").child(userRol.getRol()).setValue(userRol);
-            return true;
-        } catch (Exception error) {
-            return false;
-        }
-    }
-
-   public boolean registerUserInformation(UserInformation userInf , String userId) {
-        try {
-            databaseReference.child(userId).child("UserInformation").setValue(userInf);
-            return true;
-        } catch (Exception error) {
-            return false;
-        }
-    }
-
 }

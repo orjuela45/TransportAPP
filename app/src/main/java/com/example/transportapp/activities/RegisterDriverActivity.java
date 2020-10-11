@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.transportapp.R;
+import com.example.transportapp.models.DriverInformation;
 import com.example.transportapp.models.DriverRequest;
 import com.example.transportapp.models.User;
 import com.example.transportapp.providers.DriverRequestProvider;
@@ -267,32 +268,31 @@ public class RegisterDriverActivity extends AppCompatActivity implements Adapter
         }
         mDialog = new SpotsDialog.Builder().setContext(RegisterDriverActivity.this).setMessage("Generando solicitud...").build();
         mDialog.show();
-        Query q = databaseReference.orderByChild("driverId").equalTo(userID);
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    Toast.makeText(RegisterDriverActivity.this, "Ya tienes una solicitud pendiente", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (!uploadImages()){
-                        Toast.makeText(RegisterDriverActivity.this, "Hubo un error al guardar las imagenes", Toast.LENGTH_SHORT).show();
-                        mDialog.hide();
-                    } else {
-                        DriverRequestProvider dr = new DriverRequestProvider();
-                        if (dr.createRequest(userID) == null){
-                            Toast.makeText(RegisterDriverActivity.this, "No se pudo registrar la solicitud", Toast.LENGTH_SHORT).show();
-                            mDialog.hide();
-                        } else{
-                            Toast.makeText(RegisterDriverActivity.this, "Solicitud enviada", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegisterDriverActivity.this, MenuActivity.class));
-                        }
-                    }
+        if (!uploadImages()){
+            Toast.makeText(RegisterDriverActivity.this, "Hubo un error al guardar las imagenes", Toast.LENGTH_SHORT).show();
+            mDialog.hide();
+        } else {
+            DriverRequestProvider dr = new DriverRequestProvider();
+            if (dr.createRequest(userID) == null){
+                Toast.makeText(RegisterDriverActivity.this, "No se pudo registrar la solicitud", Toast.LENGTH_SHORT).show();
+                mDialog.hide();
+            } else{
+                DriverInformation di = new DriverInformation();
+                di.setBank(banco);
+                di.setCountBank(cuenta.getText().toString());
+                di.setCarColour(color.getText().toString());
+                di.setLicensePlate(placa.getText().toString());
+                di.setCarModel(modelo.toString());
+                UserProvider userProvider =new UserProvider();
+                if (userProvider.registerDriverInformation(di, userID) == null){
+                    Toast.makeText(RegisterDriverActivity.this, "No se pudo registrar al conductor", Toast.LENGTH_SHORT).show();
+                    mDialog.hide();
+                } else{
+                    Toast.makeText(RegisterDriverActivity.this, "Solicitud enviada", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterDriverActivity.this, MenuActivity.class));
                 }
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+        }
         mDialog.hide();
 
         return false;

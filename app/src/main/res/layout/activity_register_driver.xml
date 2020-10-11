@@ -330,7 +330,7 @@
                         android:ems="10"
                         android:fontFamily="@font/muli_extralight"
                         android:hint="xxx-xxx"
-                        android:inputType="number|text"
+                        android:inputType="text"
                         android:singleLine="false"
                         android:textColor="#80FFFFFF"
                         android:textColorHint="#80FFFFFF" />

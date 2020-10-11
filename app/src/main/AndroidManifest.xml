@@ -20,11 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activities.DetailRequestActivity"></activity>
         <activity
             android:name=".activities.MenuAdminActivity"
-            android:label=
-                "@string/title_activity_menu_admin"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_menu_admin"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.MenuDriverActivity"
             android:label="@string/title_activity_menu_driver"

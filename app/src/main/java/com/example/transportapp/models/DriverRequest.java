@@ -1,6 +1,7 @@
 package com.example.transportapp.models;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DriverRequest implements Serializable {
@@ -8,10 +9,10 @@ public class DriverRequest implements Serializable {
     String id;
     String driverId;
     String status;
-    String managerName;
+    String managerEmail;
     String observations;
-    Date created_at;
-    Date update_at;
+    String created_at;
+    String update_at;
 
     public DriverRequest() {
     }
@@ -40,12 +41,12 @@ public class DriverRequest implements Serializable {
         this.status = status;
     }
 
-    public String getManagerName() {
-        return managerName;
+    public String getManagerEmail() {
+        return managerEmail;
     }
 
-    public void setManagerName(String managerName) {
-        this.id = managerName;
+    public void setManagerEmail(String managerEmail) {
+        this.managerEmail = managerEmail;
     }
 
     public String getObservations() {
@@ -56,15 +57,19 @@ public class DriverRequest implements Serializable {
         this.observations = observations;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return created_at;
     }
 
-    public void setCreatedAt() {this.created_at = new Date();}
+    public void setCreatedAt() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        this.created_at = simpleDateFormat.format(new Date());
+    }
 
-    public Date getUpdatedAt() {return update_at;}
+    public String getUpdatedAt() {return update_at;}
 
     public void setUpdateAt() {
-        this.update_at = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        this.update_at = simpleDateFormat.format(new Date());
     }
 }

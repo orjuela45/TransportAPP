@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.widget.Button;
 
 import com.example.transportapp.R;
+import com.example.transportapp.models.ListRequests;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -18,6 +19,10 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuAdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
