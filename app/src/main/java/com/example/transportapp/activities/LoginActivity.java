@@ -121,6 +121,9 @@ public class LoginActivity extends AppCompatActivity {
                                 case "Manager":
                                     startActivity(new Intent(LoginActivity.this, MenuAdminActivity.class));
                                     break;
+                                case "Driver":
+                                    startActivity(new Intent(LoginActivity.this, MenuDriverActivity.class));
+                                    break;
                             }
                             mDialog.hide();
                         }
