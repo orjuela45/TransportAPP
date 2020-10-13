@@ -1,6 +1,5 @@
 package com.example.transportapp.providers;
 
-
 import com.example.transportapp.models.DriverInformation;
 import com.example.transportapp.models.DriverRequest;
 import com.example.transportapp.models.User;

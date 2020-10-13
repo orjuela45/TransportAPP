@@ -105,7 +105,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                                     for (DataSnapshot dataSnapshot: snapshot2.getChildren()){
                                         String status = dataSnapshot.child("status").getValue().toString();
                                         if (status.equals("Aceptado")){
-                                            Toast.makeText(MenuActivity.this, "Ya eres un conductor activo", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(MenuActivity.this, "Ya eres un conductor activo", Toast.LENGTH_SHORT).show();// cambio de rol y redirect menudriver
                                         } else if (status.equals("Pendiente")){
                                             Toast.makeText(MenuActivity.this, "Ya tienes una solicitud pendiente", Toast.LENGTH_SHORT).show();
                                         } else if (status.equals("Rechazado")){

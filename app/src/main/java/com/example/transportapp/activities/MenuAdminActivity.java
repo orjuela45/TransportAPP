@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.transportapp.R;
 import com.example.transportapp.models.ListRequests;
@@ -28,6 +29,7 @@ public class MenuAdminActivity extends AppCompatActivity implements NavigationVi
 
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,9 @@ public class MenuAdminActivity extends AppCompatActivity implements NavigationVi
         if (item.getItemId() == R.id.btnSignOutDriver){
             mAuth.signOut();
             startActivity(new Intent(MenuAdminActivity.this, LoginActivity.class));
+        }
+        if(item.getItemId() == R.id.btn_Promotion){
+            startActivity(new Intent(MenuAdminActivity.this, AddPromotion.class));
         }
         return false;
     }
