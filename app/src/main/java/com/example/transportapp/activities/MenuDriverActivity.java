@@ -1,19 +1,29 @@
 package com.example.transportapp.activities;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.transportapp.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,7 +32,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MenuDriverActivity extends AppCompatActivity {
+    private int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
+    private FusedLocationProviderClient mfusedLocationClient;
+    DatabaseReference mDatabase;
 
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth mAuth;
@@ -40,6 +56,11 @@ public class MenuDriverActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
+        mfusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        updateLatLongFirebase();
 
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -97,4 +118,29 @@ public class MenuDriverActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    private void updateLatLongFirebase() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(MenuDriverActivity.this,
+                    new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
+                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+            return;
+        }
+        mfusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            Log.e("Latitud: ", +location.getLatitude() + "Longitud: " + location.getLongitude());
+
+                            Map<String, Object> latlang = new HashMap<>();
+                            latlang.put("latitud", location.getLatitude());
+                            latlang.put("longitud", location.getLongitude());
+                            mDatabase.child("DriverLocation").push().setValue(latlang);
+                        }
+                    }
+                });
+    }
 }
