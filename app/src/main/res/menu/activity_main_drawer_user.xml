@@ -17,6 +17,7 @@
             android:icon="@drawable/icon_email"
             android:title="@string/menu_message" />
         <item
+            android:id="@+id/btnDirections"
             android:icon="@android:drawable/btn_star_big_on"
             android:title="@string/menu_address" />
         <item

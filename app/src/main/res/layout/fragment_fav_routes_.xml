@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ColorFondo"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    tools:context=".ui.favroutesuser.FavRoutes_Fragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_weight="0"
+            android:background="@drawable/my_border"
+            android:backgroundTint="#423C3C"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/exit"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/iback"
+                android:backgroundTint="@color/ColorPrimary2"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            app:srcCompat="@drawable/logo"
+            android:id="@+id/imageView"
+            android:layout_width="212dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="22dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="411dp"
+            android:layout_height="51dp"
+            android:fontFamily="@font/muli_extralight"
+            android:text="Rutas Favoritas"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="normal|bold" />
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/getEmail"
+            android:layout_width="411dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muli_extralight"
+            android:textAlignment="center"
+            android:textColor="#718CDD"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:background="@color/colorPrimaryDark"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:shape="oval"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/add1"
+            />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="8dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/containerRoutes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            >
+<!--
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="asasas"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                />
+            -->
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

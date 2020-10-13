@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.transportapp.ui.favroutesuser.FavRoutes_Fragment;
 import com.example.transportapp.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +20,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -27,16 +30,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, FavRoutes_Fragment.OnFragmentInteractionListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth mAuth;
     private Button perfil;
     private DatabaseReference databaseReferenceUser, databaseReferenceRequest;
+
+    // Fragments
+    FavRoutes_Fragment fragment_FavRoutes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
+
+        // Fragments
+        fragment_FavRoutes = new FavRoutes_Fragment();
+
     }
 
     @Override
@@ -91,6 +97,21 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             mAuth.signOut();
             startActivity(new Intent(MenuActivity.this, LoginActivity.class));
         }
+        // btnDirections
+        if (item.getItemId() == R.id.btnDirections){
+           // Toast.makeText(MenuActivity.this, "Direcciones toast", Toast.LENGTH_SHORT).show();
+            Fragment fr = new Fragment();
+            FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
+          //  transition.replace(R.id.)
+            // drawer_layout
+            getSupportFragmentManager().beginTransaction().add(R.id.drawer_layout, fragment_FavRoutes).commit();
+           // here
+           // NavigationView navigationView = findViewById(R.id.nav_view);
+            /*getSupportFragmentManager().beginTransaction().
+                    remove(getSupportFragmentManager().findFragmentById(R.id.frame)).commit();
+             */
+        }
+
         if (item.getItemId() == R.id.btnRegisterDriver){
             Query q = databaseReferenceUser;
             q.addListenerForSingleValueEvent(new ValueEventListener() {

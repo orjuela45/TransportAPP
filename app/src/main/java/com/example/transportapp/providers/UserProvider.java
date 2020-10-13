@@ -3,6 +3,7 @@ package com.example.transportapp.providers;
 
 import com.example.transportapp.models.DriverInformation;
 import com.example.transportapp.models.User;
+import com.example.transportapp.models.UserFavRoutes;
 import com.example.transportapp.models.UserInformation;
 import com.example.transportapp.models.UserRoles;
 import com.google.firebase.database.DatabaseReference;
@@ -87,6 +88,22 @@ public class UserProvider {
             }
             return null;
         } catch (Exception error) {
+            return null;
+        }
+    }
+
+
+    public UserFavRoutes createFavUser(String name_direction, String direction, String id) {
+        try {
+            UserFavRoutes userFavRoutes = new UserFavRoutes();
+          //  userFavRoutes.setId(id);
+            userFavRoutes.setId(UUID.randomUUID().toString());
+            userFavRoutes.setName_direction(name_direction);
+            userFavRoutes.setDirection(direction);
+            databaseReference.child(id).child("FavPlaces").child(userFavRoutes.getId()).setValue(userFavRoutes);
+
+            return userFavRoutes;
+        } catch (Exception error){
             return null;
         }
     }
