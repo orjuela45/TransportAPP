@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.transportapp.R;
@@ -57,6 +58,7 @@ public class FavRoutes_Fragment extends Fragment {
     Dialog dialog;
     EditText txtNombre, txtDireccion;
     FirebaseAuth mAuth;
+    TextView textView;
 
     public FavRoutes_Fragment() {
         // Required empty public constructor
@@ -105,7 +107,7 @@ public class FavRoutes_Fragment extends Fragment {
             }
         });
         //----get data
-        // onGetData();
+         onGetData();
 
 
         //------------
@@ -130,27 +132,57 @@ public class FavRoutes_Fragment extends Fragment {
                  */
             }
         });
+
         //---------Autenticacion
         mAuth = FirebaseAuth.getInstance();
         return vista;
     }
     List<ListRequests> elements;
+    String result;
+
 
     private void onGetData() {
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
        // databaseReference = FirebaseDatabase.getInstance().getReference().child("y7cdpw74HiOiqRtax5sOAm3pGzy2");
         elements = new ArrayList<>();
       //  Query q = databaseReference.child("FavPlaces").equalTo(mAuth.getCurrentUser().getUid());
-        Query q = databaseReference.child("Users").orderByChild("y7cdpw74HiOiqRtax5sOAm3pGzy2");
+      //  Query q = databaseReference.child("Users").orderByChild("y7cdpw74HiOiqRtax5sOAm3pGzy2");
+       // String id = mAuth.getCurrentUser().getUid();
+        Query q = databaseReference.child("y7cdpw74HiOiqRtax5sOAm3pGzy2").child("FavPlaces");
+        // databaseReference.child(id).child("FavPlaces").child(userFavRoutes.getId()).setValue(userFavRoutes);
 
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
+        q.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                if(snapshot.exists()) {
+                   int cont = 0;
+                   List<String> array;
+                   array = new ArrayList<String>();
                    for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                       Toast.makeText(getContext(), dataSnapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
+                   //    Toast.makeText(getContext(), dataSnapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
+                      // result = dataSnapshot.getValue().toString();
+                       //dataSnapshot.child("createdAt").getValue().toString()
+                   //    arrayString[cont] = dataSnapshot.getValue().toString();
+                      // array[cont] = dataSnapshot.getValue().toString();
+                       array.add(dataSnapshot.child("name_direction").getValue().toString());
+                   //    result = dataSnapshot.child("name_direction").getValue().toString();
+                      // textView.setText(result);
+                       cont++;
                    }
+                   LinearLayout relativeLayout = (LinearLayout)vista.findViewById(R.id.containerRoutes);
+                   relativeLayout.removeAllViews();
+                   for(int i=1; i <= cont; i++){
+
+                       Button boton = new Button(getContext());
+                       boton.setLayoutParams(new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                       boton.setText(array.get(i-1));
+                       relativeLayout.addView(boton);
+                   }
+
+
+                   //  relativeLayout.addView(boton);
+
                }
             }
 
@@ -206,6 +238,7 @@ public class FavRoutes_Fragment extends Fragment {
                     if (userOk != null) {
                         Toast.makeText(getContext(), "Dirección "+ nombre + ", agregada correctamente " + direccion , Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
+                       // onGetData();
                     } else {
                         Toast.makeText(getContext(), "Error registrando la dirección", Toast.LENGTH_SHORT).show();
                     }

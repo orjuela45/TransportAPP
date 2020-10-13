@@ -130,6 +130,7 @@
             >
 <!--
             <TextView
+                android:id="@+id/textViewtest"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="asasas"
@@ -137,6 +138,7 @@
                 android:textColor="@color/colorWhite"
                 />
             -->
+
 
         </LinearLayout>
 
