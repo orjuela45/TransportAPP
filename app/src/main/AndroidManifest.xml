@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.DetailRequestActivity"></activity>
+        <activity android:name=".activities.AddPromotion"></activity>
+        <activity android:name=".activities.DetailRequestActivity" />
         <activity
             android:name=".activities.MenuAdminActivity"
             android:label="@string/title_activity_menu_admin"

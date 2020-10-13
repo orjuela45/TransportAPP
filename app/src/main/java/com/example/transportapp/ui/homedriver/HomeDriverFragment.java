@@ -2,8 +2,10 @@ package com.example.transportapp.ui.homedriver;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -13,7 +15,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +29,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.transportapp.R;
 import com.example.transportapp.activities.Common;
+import com.example.transportapp.activities.DetailRequestActivity;
+import com.example.transportapp.activities.MenuAdminActivity;
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -44,6 +52,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -53,10 +62,12 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
-public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
+public class HomeDriverFragment extends Fragment implements OnMapReadyCallback, AdapterView.OnItemSelectedListener {
 
     private GoogleMap mMap;
     private HomeDriverViewModel homeViewModel;
@@ -64,12 +75,16 @@ public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
+    private Spinner spinnerStatusDriver;
+    private String statusDriver;
+    private FirebaseAuth mAuth;
 
     SupportMapFragment mapFragment;
     private  boolean isFirstTime;
+    private  boolean changeStatus;
 
     //Online system
-    DatabaseReference onlineRef, currentUserRef, driversLocationRef;
+    DatabaseReference onlineRef, currentUserRef, driversLocationRef, driverInfromationRef;
     GeoFire geofire;
     ValueEventListener onlinevalueEventListener = new ValueEventListener() {
         @Override
@@ -110,16 +125,51 @@ public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeDriverViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home_user, container, false);
-
-
+        View root = inflater.inflate(R.layout.fragment_home_driver, container, false);
+        changeStatus = false;
+        spinnerStatusDriver = root.findViewById(R.id.spinnerStatusDriver);
+        ArrayAdapter<CharSequence> adapterBanks = ArrayAdapter.createFromResource(getContext(), R.array.statusDriver, android.R.layout.simple_spinner_item);
+        adapterBanks.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerStatusDriver.setAdapter(adapterBanks);
+        spinnerStatusDriver.setOnItemSelectedListener(this);
+        mAuth = FirebaseAuth.getInstance();
+        driverInfromationRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
         init();
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         return root;
     }
+
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String text = adapterView.getItemAtPosition(i).toString();
+        ((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#80FFFFFF"));
+        statusDriver = text;
+        Map<String, Object> driverStatus =  new HashMap<>();
+        driverStatus.put("statusID", statusDriver);
+        driverInfromationRef.updateChildren(driverStatus).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                if (!changeStatus){
+                    Toast.makeText(getContext(), "Estas libre, buen dia.", Toast.LENGTH_SHORT).show();
+                    changeStatus = true;
+                } else {
+                    Toast.makeText(getContext(), "Cambio de estado exitoso", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), "Ocurrio un error al cambiar el estado", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
 
     private void init() {
         onlineRef = FirebaseDatabase.getInstance().getReference().child(".info/connected");
@@ -129,10 +179,6 @@ public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
             Snackbar.make(getView(), getString(R.string.permission_requiere), Snackbar.LENGTH_SHORT).show();
             return;
         }
-
-
-
-
         locationRequest = new LocationRequest();
         locationRequest.setSmallestDisplacement(50f); //50m
         locationRequest.setInterval(15000); //15 sec
@@ -261,7 +307,5 @@ public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
         }catch (Resources.NotFoundException e){
             Log.e("EDMT_ERROR",e.getMessage());
         }
-
-
     }
 }

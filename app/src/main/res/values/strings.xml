@@ -22,4 +22,10 @@
         <item>2016</item>
         <item>2014</item>
     </string-array>
+    <string-array name="statusDriver">
+        <item>Libre</item>
+        <item>En transición</item>
+        <item>Ocupado</item>
+        <item>Inactivo</item>
+    </string-array>
 </resources>
