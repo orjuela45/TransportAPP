@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -108,7 +109,21 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
                 Toast.makeText(getApplicationContext(),"\n" + "Huella digital correcta",Toast.LENGTH_LONG).show();
-                login();
+                // datos quemados
+                mAuth.signInWithEmailAndPassword("candyace2@gmail.com", "123456789").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        mDialog.dismiss();
+                        if (task.isSuccessful()){
+                            userId = mAuth.getCurrentUser().getUid();
+                            redirectMenu();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "El correo electronico o la contraseña son incorrectos", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                //Aun no se usara
+                //login();
             }
 
             @Override
