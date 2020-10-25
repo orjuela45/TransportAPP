@@ -2,6 +2,9 @@ package com.example.transportapp.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -23,6 +26,8 @@ import com.example.transportapp.R;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.concurrent.Executor;
+
 import dmax.dialog.SpotsDialog;
 
 public class LoginActivity extends AppCompatActivity {
@@ -30,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText mTextInputEmail, mTextInputPassword;
     Button mButtonLogin;
     Button mButtonGoToRegister;
+    Button btnLoginFinger;
     DatabaseReference databaseReference;
     FirebaseAuth mAuth;
     String userId;
@@ -63,6 +69,72 @@ public class LoginActivity extends AppCompatActivity {
                 goToRegister();
             }
         });
+
+        //Biometric
+        btnLoginFinger = findViewById(R.id.btnLoginFinger);
+
+        final BiometricManager biometricManager = BiometricManager.from(this);
+
+        switch (biometricManager.canAuthenticate()){
+
+            case BiometricManager.BIOMETRIC_SUCCESS:
+                Toast.makeText(this,"Puede usar su huella digital para iniciar sesión.",Toast.LENGTH_LONG).show();
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                Toast.makeText(this,"Sin sensor de huellas dactilares.",Toast.LENGTH_LONG).show();
+                btnLoginFinger.setVisibility(View.INVISIBLE);
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                Toast.makeText(this,"El sensor biométrico no está disponible.",Toast.LENGTH_LONG).show();
+                btnLoginFinger.setVisibility(View.INVISIBLE);
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                Toast.makeText(this,"Su dispositivo no tiene ninguna huella digital, verifique su configuración de seguridad.",Toast.LENGTH_LONG).show();
+                btnLoginFinger.setVisibility(View.INVISIBLE);
+                break;
+        }
+
+        Executor executor = ContextCompat.getMainExecutor(this);
+
+
+        final BiometricPrompt biometricPrompt = new BiometricPrompt(LoginActivity.this,executor,new BiometricPrompt.AuthenticationCallback(){
+
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                Toast.makeText(getApplicationContext(),"\n" + "Huella digital correcta",Toast.LENGTH_LONG).show();
+                login();
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+            }
+        });
+
+        final BiometricPrompt.PromptInfo  promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Login")
+                .setDescription("\n" +
+                        "Por favor, huella digital del usuario para iniciar sesión")
+                .setNegativeButtonText("Cancelar")
+                .build();
+
+        btnLoginFinger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                biometricPrompt.authenticate(promptInfo);
+
+
+            }
+        });
+
+
     }
 
     private void login() {

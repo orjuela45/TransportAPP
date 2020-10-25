@@ -249,4 +249,26 @@
             android:layout_height="21dp"
             android:layout_weight="1" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnLoginFinger"
+            android:layout_width="90dp"
+            android:layout_height="81dp"
+            android:background="@drawable/finger" />
+
+        <Space
+            android:layout_width="149dp"
+            android:layout_height="21dp"
+            android:layout_weight="1" />
+    </LinearLayout>
 </LinearLayout>
