@@ -20,7 +20,7 @@ public class UserProvider {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
     }
 
-    public User createUser(String email, String password, String id) {
+    public User createUser(String email, String password, String id, String token) {
         try {
             User userRegister = new User();
             userRegister.setId(id);
@@ -28,6 +28,7 @@ public class UserProvider {
             userRegister.setPassword(password);
             userRegister.setStatusID(1);
             userRegister.setCreatedAt();
+            userRegister.setToken(token);
             databaseReference.child(userRegister.getId()).setValue(userRegister);
             if (registerUSerRolTraveler(userRegister)){
                 return userRegister;

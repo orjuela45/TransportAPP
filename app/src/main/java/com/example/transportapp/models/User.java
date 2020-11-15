@@ -13,6 +13,15 @@ public class User  implements Serializable {
     Date created_at;
     Date update_at;
     Integer status_id;
+    String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public User() {
     }

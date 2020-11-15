@@ -41,6 +41,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     AlertDialog mDialog;
     private DatabaseReference databaseReference;
     FirebaseAuth mAuth;
+    String tokenUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,8 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     Boolean registerUser() throws InterruptedException {
+        GlobalClass globalClass = (GlobalClass) getApplicationContext();
+        tokenUser = globalClass.getToken();
         final String email = txtEmail.getText().toString();
         final String password = txtPassword.getText().toString();
         if (email.isEmpty()) {
@@ -111,7 +114,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 String id = mAuth.getCurrentUser().getUid();
                                 UserProvider prov = new UserProvider();
-                                User userOk = prov.createUser(email, password, id);
+                                User userOk = prov.createUser(email, password, id, tokenUser);
                                 if (userOk != null) {
                                     String userId = userOk.getId();
                                     String email = userOk.getEmail();
