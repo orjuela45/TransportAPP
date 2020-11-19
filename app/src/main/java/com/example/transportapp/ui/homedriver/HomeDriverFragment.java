@@ -55,6 +55,7 @@ import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.firebase.geofire.GeoQuery;
 import com.firebase.geofire.GeoQueryEventListener;
+import com.google.android.gms.common.internal.service.Common;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -117,8 +118,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
 
-    @BindView(R.id.chip_decline)
-    Chip chip_decline;
+    //@BindView(R.id.chip_decline)
+    //Chip chip_decline;
     @BindView(R.id.layout_accept)
     CardView layout_accept;
     @BindView(R.id.circularProgressBar)
@@ -236,41 +237,41 @@ public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
 
     private CountDownTimer waiting_timer;
 
-    @OnClick(R.id.chip_decline)
-    void OnDeclineClick() {
-        if (driverRequestReceived != null) {
-            if (TextUtils.isEmpty(tripNumberId)) {
-                if (countDownEvent != null)
-                    countDownEvent.dispose();
-                chip_decline.setVisibility(View.GONE);
-                layout_accept.setVisibility(View.GONE);
-                mMap.clear();
-                circularProgressBar.setProgress(0);
-                UserUtilsDriver.sendDeclineRequest(root_layout, getContext(), driverRequestReceived.getKey());
-                driverRequestReceived = null;
-            } else {
-                if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                        ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    Snackbar.make(mapFragment.getView(), getString(R.string.permission_require), Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
-                fusedLocationProviderClient.getLastLocation()
-                        .addOnFailureListener(e -> {
-                            Snackbar.make(mapFragment.getView(), e.getMessage(), Snackbar.LENGTH_SHORT).show();
-                        }).addOnSuccessListener(location -> {
-                    chip_decline.setVisibility(View.GONE);
-                    layout_start_uber.setVisibility(View.GONE);
-                    mMap.clear();
-                    UserUtilsDriver.sendDeclineAndRemoveTripRequest(root_layout, getContext(),
-                            driverRequestReceived.getKey(), tripNumberId);
-                    tripNumberId = ""; // Set tripNumberId to empty
-                    driverRequestReceived = null;
-                    makeDriverOnline(location);
-                });
-            }
+    //@OnClick(R.id.chip_decline)
+   // void OnDeclineClick() {
+       // if (driverRequestReceived != null) {
+          //  if (TextUtils.isEmpty(tripNumberId)) {
+             //   if (countDownEvent != null)
+              //      countDownEvent.dispose();
+              //  chip_decline.setVisibility(View.GONE);
+              //  layout_accept.setVisibility(View.GONE);
+            //    mMap.clear();
+              //  circularProgressBar.setProgress(0);
+             //   UserUtilsDriver.sendDeclineRequest(root_layout, getContext(), driverRequestReceived.getKey());
+               // driverRequestReceived = null;
+            //} else {
+             //   if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                    //    ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                  //  Snackbar.make(mapFragment.getView(), getString(R.string.permission_require), Snackbar.LENGTH_SHORT).show();
+                  //  return;
+               // }
+               // fusedLocationProviderClient.getLastLocation()
+                      //  .addOnFailureListener(e -> {
+                      //      Snackbar.make(mapFragment.getView(), e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                     //   }).addOnSuccessListener(location -> {
+                   // chip_decline.setVisibility(View.GONE);
+                   // layout_start_uber.setVisibility(View.GONE);
+                   // mMap.clear();
+                   // UserUtilsDriver.sendDeclineAndRemoveTripRequest(root_layout, getContext(),
+                   //         driverRequestReceived.getKey(), tripNumberId);
+                  //  tripNumberId = ""; // Set tripNumberId to empty
+                  //  driverRequestReceived = null;
+                   // makeDriverOnline(location);
+              //  });
+           // }
 
-        }
-    }
+        //}
+    //}
 
     @OnClick(R.id.btn_start_uber)
     void onStartUberClick() {
@@ -293,7 +294,7 @@ public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
             drawPathFromCurrentLocation(driverRequestReceived.getDestinationLocation());
         }
         btn_start_uber.setVisibility(View.GONE);
-        chip_decline.setVisibility(View.GONE);
+        //chip_decline.setVisibility(View.GONE);
         btn_complete_trip.setVisibility(View.VISIBLE);
 
     }
@@ -329,7 +330,7 @@ public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
                                 mMap.clear();
                                 tripNumberId = ""; //set tripNumberId to empty
                                 isTripStart = false; // return original state
-                                chip_decline.setVisibility(View.GONE);
+                                //chip_decline.setVisibility(View.GONE);
 
                                 layout_accept.setVisibility(View.GONE);
                                 circularProgressBar.setProgress(0);
@@ -458,7 +459,7 @@ public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
-    private HomeDriverViewModel homeDriverViewModel;
+    private HomeDriverViewModel homeViewModel;
 
     //Location
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -533,7 +534,7 @@ public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeDriverViewModel = new ViewModelProvider(this).get(HomeDriverViewModel.class);
+        homeViewModel = new ViewModelProvider(this).get(HomeDriverViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home_driver, container, false);
 
         initViews(root);
@@ -595,7 +596,7 @@ public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
                     {
                         pickupGeoQuery =
                                 pickupGeoFire.queryAtLocation(new GeoLocation(locationResult.getLastLocation().getLatitude(),
-                                        locationResult.getLastLocation().getLongitude()), CommonDriver.MIN_RANGE_PICKUP_IN_KM);
+                                        locationResult.getLastLocation().getLongitude()),CommonDriver.MIN_RANGE_PICKUP_IN_KM);
                         pickupGeoQuery.addGeoQueryEventListener(pickupGeoQueryListener);
                     }
                     //Destination
@@ -604,7 +605,7 @@ public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
                         destinationGeoQuery =
                                 destinationGeoFire.queryAtLocation(
                                         new GeoLocation(locationResult.getLastLocation().getLatitude(),
-                                                locationResult.getLastLocation().getLongitude()), CommonDriver.MIN_RANGE_PICKUP_IN_KM);
+                                                locationResult.getLastLocation().getLongitude()),CommonDriver.MIN_RANGE_PICKUP_IN_KM);
                         destinationGeoQuery.addGeoQueryEventListener(destinationGeoQueryListener);
                     }
 
@@ -858,7 +859,7 @@ public class HomeDriverFragment extends Fragment implements OnMapReadyCallback {
                             mMap.moveCamera(CameraUpdateFactory.zoomTo(mMap.getCameraPosition().zoom - 1));
 
                             //Show Layout
-                            chip_decline.setVisibility(View.VISIBLE);
+                            //chip_decline.setVisibility(View.VISIBLE);
                             layout_accept.setVisibility(View.VISIBLE);
 
                             //Count down

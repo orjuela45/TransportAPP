@@ -5,77 +5,16 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ColorFondo"
     >
-
-    <!--
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="88dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/muli_extralight"
-            android:text="Estado"
-            android:textColor="@color/drawer_item_color_state"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="10dp"
-            android:layout_weight="1" />
-
-        <Spinner
-            android:id="@+id/spinnerStatusDriver"
-            android:layout_width="176dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:backgroundTint="#80FFFFFF"
-            android:ems="10"
-            android:fontFamily="@font/muli_extralight"
-            android:textColor="#80FFFFFF"
-            android:textColorHint="#80FFFFFF" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        ;
-    </LinearLayout>-->
 
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.homedriver.HomeDriverFragment" />
+        tools:context=".MapsActivity" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_decline"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/decline"
-        android:textColor="@android:color/white"
-        app:chipBackgroundColor="@color/colorAccent2"
-        app:chipIcon="@drawable/ic_baseline_clear_24"
-        app:chipIconTint="@android:color/white" />
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/layout_accept"
@@ -84,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_margin="8dp"
-        app:cardBackgroundColor="@color/colorAccent2"
+        app:cardBackgroundColor="@color/colorAccent"
         app:cardCornerRadius="8dp">
 
         <LinearLayout
@@ -348,5 +287,4 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 </FrameLayout>

@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.transportapp.ui.favroutesuser.FavRoutes_Fragment;
@@ -34,7 +35,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth mAuth;
-    private Button perfil;
+    private ImageView perfil;
     private DatabaseReference databaseReferenceUser, databaseReferenceRequest;
 
     // Fragments
@@ -98,19 +99,19 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MenuActivity.this, LoginActivity.class));
         }
         // btnDirections
-        if (item.getItemId() == R.id.btnDirections){
+        //if (item.getItemId() == R.id.btnDirections){
            // Toast.makeText(MenuActivity.this, "Direcciones toast", Toast.LENGTH_SHORT).show();
-            Fragment fr = new Fragment();
-            FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
+            //Fragment fr = new Fragment();
+            //FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
           //  transition.replace(R.id.)
             // drawer_layout
-            getSupportFragmentManager().beginTransaction().add(R.id.drawer_layout, fragment_FavRoutes).commit();
+            //getSupportFragmentManager().beginTransaction().add(R.id.drawer_layout, fragment_FavRoutes).commit();
            // here
            // NavigationView navigationView = findViewById(R.id.nav_view);
             /*getSupportFragmentManager().beginTransaction().
                     remove(getSupportFragmentManager().findFragmentById(R.id.frame)).commit();
              */
-        }
+        //}
 
         if (item.getItemId() == R.id.btnRegisterDriver){
             Query q = databaseReferenceUser;
