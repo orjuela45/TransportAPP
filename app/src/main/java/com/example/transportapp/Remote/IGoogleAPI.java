@@ -5,8 +5,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface IGoogleAPI {
-
-    // Remember you MUST ENABLE BILLING FOR YOUR PROJECT TO USE THIS API
+    //Remember you MUST ENABLE BILLING FOR YOUR PROJECT TO USE THIS API
     @GET("maps/api/directions/json")
     Observable<String> getDirections(
             @Query("mode") String mode,

@@ -1,4 +1,4 @@
-package com.example.transportapp.models;
+package com.example.transportapp.Model;
 
 import java.util.ArrayList;
 

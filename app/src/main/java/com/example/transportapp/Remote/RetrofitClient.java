@@ -9,9 +9,9 @@ public class RetrofitClient {
 
     public static Retrofit getInstance() {
         return instance == null ? new Retrofit.Builder()
-            .baseUrl("https://maps.googleapis.com/") // Don't forget last /
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl("https://maps.googleapis.com/") // Dont forget Last /
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build() : instance;
     }
 }

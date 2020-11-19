@@ -1,4 +1,4 @@
-package com.example.transportapp.models;
+package com.example.transportapp.Model;
 
 import com.firebase.geofire.GeoLocation;
 
@@ -6,9 +6,9 @@ public class DriverGeoModel {
     private String key;
     private GeoLocation geoLocation;
     private DriverInfoModel driverInfoModel;
+    private boolean isDecline;
 
     public DriverGeoModel() {
-
     }
 
     public DriverGeoModel(String key, GeoLocation geoLocation) {
@@ -38,5 +38,13 @@ public class DriverGeoModel {
 
     public void setDriverInfoModel(DriverInfoModel driverInfoModel) {
         this.driverInfoModel = driverInfoModel;
+    }
+
+    public boolean isDecline() {
+        return isDecline;
+    }
+
+    public void setDecline(boolean decline) {
+        isDecline = decline;
     }
 }

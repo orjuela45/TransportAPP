@@ -10,4 +10,12 @@
     <color name="ColorPrimary2">#3969FC</color>
     <color name="ColorWhite50">#80FFFFFF</color>
     <color name="ColorFondo">#333333</color>
+    <color name="colorAccent2">#000000</color>
+
+    //
+    <color name="progress_bar_color">#151828</color>
+    <color name="colorStartUber">#227159</color>
+    <color name="dark_gray">#656565</color>
+    <color name="blue_uber">#2C6FF2</color>
+    <color name="map_darker">#33333333</color>
 </resources>
