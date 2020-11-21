@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //Firebase
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference = FirebaseDatabase.getInstance().getReference("DriverInfo"); // va getReference("Users")
         mAuth = FirebaseAuth.getInstance();
 
         mTextInputEmail = findViewById(R.id.textInputEmail);

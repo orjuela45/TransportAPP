@@ -14,10 +14,11 @@ import java.util.UUID;
 
 public class UserProvider {
 
-    public DatabaseReference databaseReference;
+    public DatabaseReference databaseReference, databaseReference2;
 
     public UserProvider() {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("DriverInfo");
+        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Riders");
     }
 
     public User createUser(String email, String password, String id, String token) {
@@ -67,7 +68,7 @@ public class UserProvider {
             userRol.setRol("Driver");
             userRol.setCreatedAt();
             userRol.setCurrent(false);
-            databaseReference.child(userId).child("Rols").child(userRol.getRol()).setValue(userRol);
+            databaseReference2.child(userId).child("Rols").child(userRol.getRol()).setValue(userRol);
             return true;
         } catch (Exception error) {
             return false;
