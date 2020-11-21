@@ -17,8 +17,8 @@ public class UserProvider {
     public DatabaseReference databaseReference, databaseReference2;
 
     public UserProvider() {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("DriverInfo");
-        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Riders");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Riders");
+        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("DriverInfo");
     }
 
     public User createUser(String email, String password, String id, String token) {

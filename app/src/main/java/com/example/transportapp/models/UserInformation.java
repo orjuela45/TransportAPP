@@ -5,26 +5,26 @@ import java.util.Date;
 
 public class UserInformation {
 
-    String name;
+    String firstName;
     String lastName;
     String identification;
-    String phone;
+    String phoneNumber;
     String birthdate;
 
     public UserInformation(String name, String lastName, String identification, String phone, String birthdate) {
-        this.name = name;
+        this.firstName = name;
         this.lastName = lastName;
         this.identification = identification;
-        this.phone = phone;
+        this.phoneNumber = phone;
         this.birthdate = birthdate;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -43,15 +43,19 @@ public class UserInformation {
         this.identification = identification;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getBirthDate() {return birthdate;}
+    public String getBirthdate() {
+        return birthdate;
+    }
 
-    public void setBirthDate(String birthDate) {this.birthdate = birthdate;}
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
 }
